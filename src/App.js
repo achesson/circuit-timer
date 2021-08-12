@@ -1,11 +1,18 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
-import DisplayWorkout from './components/DisplayWorkout';
+import DisplayWorkoutLibrary from './components/DisplayWorkoutLibrary';
 import AddWorkout from './components/AddWorkout';
 
 function App() {
   const [workoutLibrary, setWorkoutLibrary] = useState([]);
+
+  const addWorkoutToLibrary = (newWorkout) => {
+    console.log(newWorkout);
+    let newWorkoutLibrary = [...workoutLibrary, newWorkout];
+    setWorkoutLibrary(workoutLibrary => newWorkoutLibrary);
+
+  }
 
   
 
@@ -13,8 +20,8 @@ function App() {
     <div className="App">
       
       
-      
-      <AddWorkout addWorkoutCb = {workout => AddWorkout(workout)}/>
+      <DisplayWorkoutLibrary workoutLibrary={workoutLibrary} />
+      <AddWorkout addWorkoutToLibraryCb = {workout => addWorkoutToLibrary(workout)}/>
 
       
 

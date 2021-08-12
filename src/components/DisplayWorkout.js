@@ -2,14 +2,18 @@ import React from "react";
 import './DisplayWorkout.css';
 
 function DisplayWorkout(props) {
-  let w = props.workout;
+  let w = props.circuits;
 
     return (
       <div className="DisplayWorkout">
-          <h2> Display Workout</h2>
-          {w.map(circuit => 
-              circuit.exercises.map(e => 
-                <h3 key = {e.id}>{e.exerciseName}{e.durationTime}</h3>))}
+          <h1> Display Workout</h1>
+          {w.map(circuit => {
+              return circuit.exercises.map(e => (
+                <h2 key={circuit.name}> 
+                {e.exerciseName } {' '} {e.durationTime }</h2>
+                ))})}
+                
+               
 
   
       </div>

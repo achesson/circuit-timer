@@ -48,7 +48,7 @@ function AddCircuit(props) {
     //add rest between sets
     newCircuit.restTimeBetweenSets= formData.restTimeBetweenSets;
 
-    //add circuit
+    //pass to parent
     props.addCircuitToWorkoutCb(newCircuit);
 
     //reset
@@ -56,7 +56,7 @@ function AddCircuit(props) {
     setExercises([]);
     setFormData(EmptyFormData)
     let newCircuitNamesIX = circuitNamesIX + 1;
-    setCircuitNamesIX(newCircuitNamesIX);
+    setCircuitNamesIX(circuitNamesIX => newCircuitNamesIX);
   }
   
 
