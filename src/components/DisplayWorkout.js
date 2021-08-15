@@ -10,9 +10,9 @@ function DisplayWorkout(props) {
           <h3> 2. Add Workout to Library </h3>
         { circuits.map(c=> 
         <h2 key={c.name}>{c.name}
-          {c.exercises.map(e => <h3 key={e.id}>
-            {e.exerciseName}
-          </h3>)}
+          {c.exercises.map(e => <p key={e.id}>
+            {e.exerciseName} {' '} {e.timeOn} {':'} {e.timeOff}
+          </p>)}
         
         </h2>)
          

@@ -4,15 +4,14 @@ import DisplayWorkout from "./DisplayWorkout"
 import "./AddWorkout.css"
 
 
-const EmptyFormData = {
+const EmptyWorkoutData = {
   workoutName: "",
   restBetweenCircuits: ""
 }
 
 
 function AddWorkout(props) {
-  const [formData, setFormData] = useState(EmptyFormData);
-  const [workout, setWorkout] = useState([]);
+  const [workout, setWorkout] = useState(EmptyWorkoutData);
   const [circuits, setCircuits] = useState([]);
   const [workoutID, setWorkoutID] = useState(0);
   
@@ -29,38 +28,34 @@ function AddWorkout(props) {
 
   const handleSubmit = (e) => {
     console.log("Add workout submit")
-    
     e.preventDefault();
     
 
-    let newWorkout = [];
+    let newWorkout = {...workout};
 
     //add new workout properties
     newWorkout.circuits = circuits;
     newWorkout.workoutID = workoutID;
-    newWorkout.workoutName = formData.workoutName;
-    newWorkout.restBetweenCircuits = formData.restBetweenCircuits;
-    console.log(newWorkout);
-    //setWorkout
-    setWorkout(workout => newWorkout);
+    newWorkout.workoutName = workout.workoutName;
+    newWorkout.restBetweenCircuits = workout.restBetweenCircuits;
+   
     //pass to parent
-    props.addWorkoutToLibraryCb(workout);
+    props.addWorkoutToLibraryCb(newWorkout);
 
     //reset 
     let nextWorkoutID = workoutID + 1;
     setWorkoutID(workoutID => nextWorkoutID);
     setCircuits([]);
-    setFormData(EmptyFormData);
-    setWorkout([]);
+    setWorkout(EmptyWorkoutData);
 
   }
 
   const handleChange = e => {
     
     let { name , value } = e.target; //extract data
-    let newFormData = {...formData}; //make copy of the state
-    newFormData[name] = value; //update state
-    setFormData(formData => newFormData); //set state
+    let newWorkout = {...workout}; //make copy of the state
+    newWorkout[name] = value; //update state
+    setWorkout(workout => newWorkout); //set state
     
   };
 
@@ -77,7 +72,7 @@ function AddWorkout(props) {
             type="text"
             name="restBetweenCircuits"
             placeholder="Enter rest time between circuits"
-            value={formData.restBetweenCircuits}
+            value={workout.restBetweenCircuits}
             onChange={e => handleChange(e)}
           />
           <label> Name this workout: </label>
@@ -85,7 +80,7 @@ function AddWorkout(props) {
             type="text"
             name="workoutName"
             placeholder="Name this workout"
-            value={formData.workoutName}
+            value={workout.workoutName}
             onChange={e => handleChange(e)}
           />
 
