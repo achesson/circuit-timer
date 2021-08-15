@@ -7,7 +7,7 @@ import DisplayCurrentCircuit from "./DisplayCurrentCircuit";
 const circuitNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
 //holds data for circuit entered by user
-let EmptyFormData = {
+let EmptyCircuitData = {
   numberOfSets: '',
   restTimeBetweenSets: ''
 }
@@ -15,8 +15,7 @@ let EmptyFormData = {
 
 function AddCircuit(props) {
   const [exercises, setExercises] = useState([]);
-  const [formData, setFormData] = useState(EmptyFormData);
-  const [circuit, setCircuit] = useState([]);
+  const [circuit, setCircuit] = useState(EmptyCircuitData);
   let [nextId, setNextId] = useState(1);
   let [circuitNamesIX, setCircuitNamesIX] = useState(0)
 
@@ -38,13 +37,13 @@ function AddCircuit(props) {
 
     e.preventDefault();
 
-    let newCircuit = [...circuit];
+    let newCircuit = {...circuit};
 
     
     newCircuit.name = circuitNames[circuitNamesIX]; //add letter name to circuit e.g. 'A'
     newCircuit.exercises = exercises; //add exercises
-    newCircuit.numberOfSets = formData.numberOfSets; //add number of sets
-    newCircuit.restTimeBetweenSets= formData.restTimeBetweenSets; //add rest between sets
+    newCircuit.numberOfSets = circuit.numberOfSets; //add number of sets
+    newCircuit.restTimeBetweenSets= circuit.restTimeBetweenSets; //add rest between sets
     
     
     console.log("addcircuit handlesubmit", newCircuit);
@@ -53,7 +52,7 @@ function AddCircuit(props) {
     //reset
     setCircuit([]);
     setExercises([]);
-    setFormData(EmptyFormData)
+    setCircuit(EmptyCircuitData)
     let newCircuitNamesIX = circuitNamesIX + 1;
     setCircuitNamesIX(circuitNamesIX => newCircuitNamesIX);
   }
@@ -64,10 +63,10 @@ function AddCircuit(props) {
     let { name , value } = e.target;
 
     //set data
-    let newFormData = {...formData};
+    let newCircuitData = {...EmptyCircuitData};
 
-    newFormData[name] = value;
-    setFormData(formData => newFormData);
+    newCircuitData[name] = value;
+    setCircuit(circuit => newCircuitData);
     
   };
 
@@ -90,7 +89,7 @@ function AddCircuit(props) {
             type="text"
             name="numberOfSets"
             placeholder="e.g. '4' "
-            value={formData.numberOfSets}
+            value={circuit.numberOfSets}
             onChange={e => handleChange(e)}
           />
           <label> Enter rest time (seconds) between sets: </label>
@@ -98,7 +97,7 @@ function AddCircuit(props) {
             type="text"
             name="restTimeBetweenSets"
             placeholder="e.g. '60'"
-            value={formData.restTimeBetweenSets}
+            value={circuit.restTimeBetweenSets}
             onChange={e => handleChange(e)}
           />
           <button type="submit" >Add Circuit to Workout</button>
