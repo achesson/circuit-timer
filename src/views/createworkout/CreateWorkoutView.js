@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import AddCircuit from "./AddCircuit";
 import DisplayWorkout from "./DisplayWorkout"
-import "./AddWorkout.css"
+import "./CreateWorkoutView.css"
 
 
 const EmptyWorkoutData = {
@@ -10,7 +10,7 @@ const EmptyWorkoutData = {
 }
 
 
-function AddWorkout(props) {
+function CreateWorkoutView(props) {
   const [workout, setWorkout] = useState(EmptyWorkoutData);
   const [circuits, setCircuits] = useState([]);
   const [workoutID, setWorkoutID] = useState(0);
@@ -95,4 +95,4 @@ function AddWorkout(props) {
     );
   }
   
-  export default AddWorkout;
+  export default CreateWorkoutView;

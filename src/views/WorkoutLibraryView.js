@@ -1,7 +1,7 @@
 import React from "react";
-import './DisplayWorkoutLibrary.css';
+import './WorkoutLibraryView.css';
 
-function DisplayWorkoutLibrary(props) {
+function WorkoutLibraryView(props) {
   
 
     return (
@@ -16,4 +16,4 @@ function DisplayWorkoutLibrary(props) {
     );
   }
   
-  export default DisplayWorkoutLibrary;
+  export default WorkoutLibraryView;

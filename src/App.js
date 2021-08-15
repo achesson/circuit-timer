@@ -1,8 +1,16 @@
 //import logo from './logo.svg';
 import './App.css';
+import { useHistory } from 'react-router-dom';
 import React, {useState} from 'react';
-import DisplayWorkoutLibrary from './components/DisplayWorkoutLibrary';
-import AddWorkout from './components/AddWorkout';
+
+import Navbar from './components/Navbar';
+import Routes from './components/Routes';
+
+
+
+
+
+
 
 function App() {
   const [workoutLibrary, setWorkoutLibrary] = useState([]);
@@ -18,10 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      
-      
-      <DisplayWorkoutLibrary workoutLibrary={workoutLibrary} />
-      <AddWorkout addWorkoutToLibraryCb = {workout => addWorkoutToLibrary(workout)}/>
+      <Navbar />
+      <Routes 
+      workoutLibrary={workoutLibrary}
+      addWorkoutToLibraryCb = {workout => addWorkoutToLibrary(workout)}/> 
+   
+   
 
       
 
