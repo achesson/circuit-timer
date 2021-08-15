@@ -8,7 +8,7 @@ function App() {
   const [workoutLibrary, setWorkoutLibrary] = useState([]);
 
   const addWorkoutToLibrary = (newWorkout) => {
-    console.log(newWorkout);
+    console.log('addworkout to library');
     let newWorkoutLibrary = [...workoutLibrary, newWorkout];
     setWorkoutLibrary(workoutLibrary => newWorkoutLibrary);
 

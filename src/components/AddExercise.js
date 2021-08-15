@@ -3,10 +3,11 @@ import './AddExercise.css';
 
 const EmptyFormData = {
   exerciseName: "",
-  durationTime: ""
+  timeOn: "",
+  timeOff:""
 };
 
-
+//ADDS AN EXERCISE TO THE PARENT CIRCUIT (AddCircuit)
 function AddExercise(props) {
   const [exercise, setExercise] = useState(EmptyFormData);
  
@@ -22,28 +23,38 @@ function AddExercise(props) {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-    props.addExerciseCb(exercise);
+    e.preventDefault();  
+    props.addExerciseCb(exercise); //pass exercise up to parent- AddCircuit
     setExercise(EmptyFormData);
   };
 
     return (
       <div className="AddExercise">
-          <h3>Add New Exercise Form</h3>
+          <h3>Add exercise to circuit</h3>
       <form onSubmit={e => handleSubmit(e)}>
         <span id="text-fields">
+          <label>Enter exercise name</label>
           <input
             type="text"
             name="exerciseName"
-            placeholder="Enter exercise"
+            placeholder="e.g. 'jumping jacks'"
             value={exercise.exerciseName}
             onChange={e => handleChange(e)}
           />
+          <label>Enter duration time in seconds: </label>
           <input
             type="text"
-            name="durationTime"
-            placeholder="Enter duration"
-            value={exercise.durationTime}
+            name="timeOn"
+            placeholder="e.g. '30'"
+            value={exercise.timeOn}
+            onChange={e => handleChange(e)}
+          />
+          <label>Enter rest time in seconds: </label>
+            <input
+            type="text"
+            name="timeOff"
+            placeholder="e.g. '10'"
+            value={exercise.timeOff}
             onChange={e => handleChange(e)}
           />
         </span>

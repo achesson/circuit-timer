@@ -3,8 +3,10 @@ import AddExercise from "./AddExercise";
 import './AddCircuit.css';
 import DisplayCurrentCircuit from "./DisplayCurrentCircuit";
 
-
+//used to automatically give circuit a name
 const circuitNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+//holds data for circuit entered by user
 let EmptyFormData = {
   numberOfSets: '',
   restTimeBetweenSets: ''
@@ -12,44 +14,41 @@ let EmptyFormData = {
 
 
 function AddCircuit(props) {
-  const [circuit, setCircuit] = useState([]);
   const [exercises, setExercises] = useState([]);
   const [formData, setFormData] = useState(EmptyFormData);
+  const [circuit, setCircuit] = useState([]);
   let [nextId, setNextId] = useState(1);
   let [circuitNamesIX, setCircuitNamesIX] = useState(0)
 
+  //adds an exercise from AddExercise.js to exercises state
   const addExercise = (newExercise) => {
  
-    //not sure if i need an Id but why not
-    newExercise.id = nextId;
-    //add exercise to current circuit
-    let newExercises = [...exercises, newExercise];
-    //increment id
-    let newNextId = nextId + 1;
-    //set the new circuit
-    setExercises(exercises => newExercises);
-    setNextId(nextId => newNextId);
+    newExercise.id = nextId; //create ID
+    let newExercises = [...exercises, newExercise]; //add exercise to current circuit exercises
+
+    //reset
+    let newNextId = nextId + 1; //increment id
+    setExercises(exercises => newExercises); //set the new circuit
+    setNextId(nextId => newNextId); //set nextId
 
   }
 
   const handleSubmit = (e) => {
     console.log("add circuit handlesubmit")
+
     e.preventDefault();
 
-    let newCircuit = [...circuit]
+    let newCircuit = [...circuit];
 
-    //add letter name to circuit
-    newCircuit.name = circuitNames[circuitNamesIX];
-
-  //add exercises
-    newCircuit.exercises = exercises;
-   //add number of sets
-   newCircuit.numberOfSets = formData.numberOfSets;
-    //add rest between sets
-    newCircuit.restTimeBetweenSets= formData.restTimeBetweenSets;
-
-    //pass to parent
-    props.addCircuitToWorkoutCb(newCircuit);
+    
+    newCircuit.name = circuitNames[circuitNamesIX]; //add letter name to circuit e.g. 'A'
+    newCircuit.exercises = exercises; //add exercises
+    newCircuit.numberOfSets = formData.numberOfSets; //add number of sets
+    newCircuit.restTimeBetweenSets= formData.restTimeBetweenSets; //add rest between sets
+    
+    
+    console.log("addcircuit handlesubmit", newCircuit);
+    props.addCircuitToWorkoutCb(newCircuit); //pass finished circuit to parent AddWorkout
 
     //reset
     setCircuit([]);
@@ -74,28 +73,38 @@ function AddCircuit(props) {
 
     return (
       <div className="AddCircuit">
-          <h3>New Circuit Form</h3>
-          <DisplayCurrentCircuit exercises={exercises}/>
+          <h3> 1. Create workout by adding a new circuit: </h3>
+          <span className="AddCircuitGrid">
           <AddExercise addExerciseCb={exercise => addExercise(exercise)}/>
+          <DisplayCurrentCircuit 
+            exercises={exercises}
+            circuitNames={circuitNames}
+            circuitNamesIX={circuitNamesIX}
+
+            />
+            </span>
+          <span className="AddCircuitForm">
           <form onSubmit={e => handleSubmit(e)} >
+          <label> Enter number of sets: </label>
           <input
             type="text"
             name="numberOfSets"
-            placeholder="Enter Number of Sets"
+            placeholder="e.g. '4' "
             value={formData.numberOfSets}
             onChange={e => handleChange(e)}
           />
+          <label> Enter rest time (seconds) between sets: </label>
           <input
             type="text"
             name="restTimeBetweenSets"
-            placeholder="Enter rest time in between sets"
+            placeholder="e.g. '60'"
             value={formData.restTimeBetweenSets}
             onChange={e => handleChange(e)}
           />
           <button type="submit" >Add Circuit to Workout</button>
           </form>
+          </span>
           
-      
   
       </div>
     );

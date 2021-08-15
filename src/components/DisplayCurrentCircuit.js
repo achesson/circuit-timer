@@ -7,9 +7,9 @@ function DisplayCurrentCircuit(props) {
 
     return (
       <div className="DisplayCurrentCircuit">
-          <h2> Display Current Circuit</h2>
+          <h3>Current circuit: {props.circuitNames[props.circuitNamesIX]}</h3>
           <ul >
-            {e.map(x => <h3 key={x.id}>{x.exerciseName} {x.durationTime}</h3>)}
+            {e.map(x => <h3 key={x.id}>{x.exerciseName} {' '} {x.timeOn}</h3>)}
           </ul>
   
       </div>

@@ -2,17 +2,16 @@ import React from "react";
 import './DisplayWorkout.css';
 
 function DisplayWorkout(props) {
-  let w = props.circuits;
+  //let exercises = props.circuits.exercises;
 
     return (
       <div className="DisplayWorkout">
-          <h1> Display Workout</h1>
-          {w.map(circuit => {
-              return circuit.exercises.map(e => (
-                <h2 key={circuit.name}> 
-                {e.exerciseName } {' '} {e.durationTime }</h2>
-                ))})}
-                
+          <h3> 2. Add Workout to Library </h3>
+         
+             
+          <ul >
+         
+          </ul>
                
 
   
