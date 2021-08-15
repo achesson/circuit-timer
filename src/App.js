@@ -6,14 +6,14 @@ import React, {useState} from 'react';
 import Navbar from './components/Navbar';
 import Routes from './components/Routes';
 
-
+import sampledata from "./sampledata";
 
 
 
 
 
 function App() {
-  const [workoutLibrary, setWorkoutLibrary] = useState([]);
+  const [workoutLibrary, setWorkoutLibrary] = useState(sampledata);
 
   const addWorkoutToLibrary = (newWorkout) => {
     console.log('addworkout to library');

@@ -22,4 +22,4 @@ export default [
     numberOfSets: "2", restTimeBetweenSets: "30"}],
 }
 
-]
+];
