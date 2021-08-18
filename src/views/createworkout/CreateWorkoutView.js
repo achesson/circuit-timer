@@ -13,7 +13,7 @@ const EmptyWorkoutData = {
 function CreateWorkoutView(props) {
   const [workout, setWorkout] = useState(EmptyWorkoutData);
   const [circuits, setCircuits] = useState([]);
-  const [workoutID, setWorkoutID] = useState(0);
+  const [workoutID, setWorkoutID] = useState(2);
   
 
   const addCircuitToWorkout = (newCircuit) => {

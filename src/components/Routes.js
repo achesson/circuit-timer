@@ -7,6 +7,7 @@ import SingleWorkoutView from '../views/SingleWorkoutView';
 import Error404View from '../views/Error404View';
 import CreateWorkoutView from '../views/createworkout/CreateWorkoutView';
 import WorkoutLibraryView from '../views/WorkoutLibraryView';
+import PlayWorkout from '../views/PlayWorkout';
 
 
 
@@ -32,6 +33,11 @@ function Routes(props) {
             {/* View Single Workout */}
             <Route path="/workouts/:id">
                 <SingleWorkoutView workoutLibrary={props.workoutLibrary} />
+            </Route>
+
+              {/* Start workout timer for this workout*/}
+              <Route path="/play-workout">
+                <PlayWorkout  />
             </Route>
 
             {/* Create & Save a new workout */}

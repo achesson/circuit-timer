@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Error404View from './Error404View';
-
-
+//import Timer from './Timer'
+import DisplayTextSingleWorkout from "./DisplayTextSingleWorkout"
+import './SingleWorkoutView.css';
 /*
 {
   workoutID: 0,
@@ -39,18 +40,14 @@ function SingleWorkoutView(props) {
    
 
     return (
-        <div className="UserProfileView">
-            <h2>{workout.workoutName}</h2>
-            { circuits.map(c=> 
-        <h2 key={c.name}>{c.name}</h2>)}
-          {circuits.map(c=> c.exercises.map(e => 
-          <p key={e.id}>
-            {e.exerciseName} {' '} {e.timeOn} {':'} {e.timeOff}
-          </p>))}
+        <div className="SingleWorkoutView">
+        <span className="grid" >
+        <DisplayTextSingleWorkout workout={workout} />
+           
         
          
-
-        
+        </span>
+    
         
        
          
